@@ -53,6 +53,7 @@ export const api = {
   assignCarrier: (id, carrierOrgId) => request(`/loads/${id}/assign-carrier`, { method: 'POST', body: { carrierOrgId } }),
   transitionLoad: (id, payload) => request(`/loads/${id}/transition`, { method: 'POST', body: payload }),
   confirmRate: (id, payload) => request(`/loads/${id}/rate-confirmations`, { method: 'POST', body: payload }),
+  auditLog: () => request('/loads/meta/audit-log'),
 };
 
 export { getToken };

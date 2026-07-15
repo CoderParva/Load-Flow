@@ -51,6 +51,20 @@ router.get('/:id', (req, res) => {
   res.json({ ...load, events, rateVersions });
 });
 
+// GET /loads/audit-log -- stretch: org-scoped view across all of the
+// caller's loads, newest first. Read-only, no permission gate beyond org
+// scope since it's informational rather than an action.
+router.get('/meta/audit-log', (req, res) => {
+  const { clause, params } = loadScopeClause(req.user);
+  const rows = db.prepare(
+    `SELECT le.*, l.origin, l.destination FROM load_events le
+     JOIN loads l ON l.id = le.load_id
+     WHERE l.${clause}
+     ORDER BY le.created_at DESC LIMIT 200`
+  ).all(...params);
+  res.json(rows);
+});
+
 // POST /loads -- broker staff with load.create only. shipper_org_id must
 // belong to a real SHIPPER org (broker picks from shippers they've worked with,
 // or types a new one -- for hackathon scope we require an existing org id).

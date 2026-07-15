@@ -7,6 +7,7 @@ import NewLoad from './pages/NewLoad.jsx';
 import LoadDetail from './pages/LoadDetail.jsx';
 import RolesStaff from './pages/RolesStaff.jsx';
 import Compliance from './pages/Compliance.jsx';
+import AuditLog from './pages/AuditLog.jsx';
 
 function Protected({ children }) {
   const { user, loading } = useAuth();
@@ -25,6 +26,7 @@ function AppRoutes() {
       <Route path="/loads/:id" element={<Protected><LoadDetail /></Protected>} />
       <Route path="/roles" element={<Protected><RolesStaff /></Protected>} />
       <Route path="/compliance" element={<Protected><Compliance /></Protected>} />
+      <Route path="/audit-log" element={<Protected><AuditLog /></Protected>} />
       <Route path="*" element={<Navigate to="/loads" replace />} />
     </Routes>
   );

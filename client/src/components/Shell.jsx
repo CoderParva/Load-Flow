@@ -21,6 +21,7 @@ export default function Shell({ children }) {
             <>
               <NavLink to="/loads" className={({ isActive }) => isActive ? 'active' : ''}>Load board</NavLink>
               <NavLink to="/roles" className={({ isActive }) => isActive ? 'active' : ''}>Roles &amp; staff</NavLink>
+              <NavLink to="/audit-log" className={({ isActive }) => isActive ? 'active' : ''}>Audit log</NavLink>
             </>
           )}
           {user?.orgType === 'CARRIER' && (
@@ -28,6 +29,7 @@ export default function Shell({ children }) {
               <NavLink to="/loads" className={({ isActive }) => isActive ? 'active' : ''}>Assigned loads</NavLink>
               <NavLink to="/compliance" className={({ isActive }) => isActive ? 'active' : ''}>Compliance</NavLink>
               <NavLink to="/roles" className={({ isActive }) => isActive ? 'active' : ''}>Roles &amp; staff</NavLink>
+              <NavLink to="/audit-log" className={({ isActive }) => isActive ? 'active' : ''}>Audit log</NavLink>
             </>
           )}
           {user?.orgType === 'SHIPPER' && (
